@@ -13,7 +13,7 @@ build:
   script:
     - echo "Building Docker image..."
     - docker build -t $DOCKER_IMAGE .
-    - docker login -u "kareemhijjawi5" -p "12345678911"  # Log in to Docker Hub
+    - docker login -u "username" -p "password"  # Log in to Docker Hub
     - docker push $DOCKER_IMAGE  # Push the image to Docker Hub
     - docker images  # List images to confirm the build and push
   only:
@@ -26,7 +26,7 @@ deploy:
     - docker:dind
   script:
     - echo "Deploying to localhost..."
-    - docker login -u "kareemhijjawi5" -p "12345678911"  # Log in to Docker Hub
+    - docker login -u "username" -p "password"  # Log in to Docker Hub
     - docker pull $DOCKER_IMAGE  # Pull the image from Docker Hub
     - docker images  # Verify if the image is present
     - docker run -d -p 8000:8000 $DOCKER_IMAGE  # Run the container
