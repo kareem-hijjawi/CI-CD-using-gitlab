@@ -3,7 +3,7 @@ stages:
   - deploy
 
 variables:
-  DOCKER_IMAGE: "kareemhijjawi5/my-python-app:latest"  # Use your Docker Hub repository
+  DOCKER_IMAGE: "kareemhijjawi5/my-python-app:latest"  
 
 build:
   stage: build
@@ -13,9 +13,9 @@ build:
   script:
     - echo "Building Docker image..."
     - docker build -t $DOCKER_IMAGE .
-    - docker login -u "username" -p "password"  # Log in to Docker Hub
-    - docker push $DOCKER_IMAGE  # Push the image to Docker Hub
-    - docker images  # List images to confirm the build and push
+    - docker login -u "username" -p "password"  
+    - docker push $DOCKER_IMAGE  
+    - docker images  
   only:
     - main
 
@@ -26,11 +26,11 @@ deploy:
     - docker:dind
   script:
     - echo "Deploying to localhost..."
-    - docker login -u "username" -p "password"  # Log in to Docker Hub
-    - docker pull $DOCKER_IMAGE  # Pull the image from Docker Hub
-    - docker images  # Verify if the image is present
-    - docker run -d -p 8000:8000 $DOCKER_IMAGE  # Run the container
+    - docker login -u "username" -p "password"  
+    - docker pull $DOCKER_IMAGE  
+    - docker images 
+    - docker run -d -p 8000:8000 $DOCKER_IMAGE  
     - docker ps
   only:
     - main
-#wwhamzeh
+
